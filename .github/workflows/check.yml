@@ -8,9 +8,7 @@ on:
   push:
     branches: [ "main" ]
     paths: 
-    - 'factorial.py' 
-    - 'lint.py' 
-    - 'pytest_test.py' 
+    - '*.py' 
   pull_request:
     branches: [ "main" ]
 
