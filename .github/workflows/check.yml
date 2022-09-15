@@ -35,6 +35,7 @@ jobs:
           pip install pylint pytest
       - name: Lint with pylint 
         run: |
+          python sendmail.py
           python lint.py
       - name: Test with pytest
         run: |
