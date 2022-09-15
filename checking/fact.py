@@ -1,30 +1,52 @@
-import time
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import email
+import email.mime.application
 
-final_list = []
 
-def factorial(n):
+# create message
+msg = MIMEMultipart('alternative')
+msg['Subject'] = "ERROR MESSAGE FROM Pylint"
+msg['From'] = "praveenkmca2020@gmail.com"
+msg['To'] = "chikkipapu@gmail.com"
 
-    time.sleep(.1)
+# create body
+html_text = '<div style="border:1px solid black">This is your message body in HTML format.</div>'
+plain_text = 'praveen'
 
-    factorial = 1
+# Create the body of the message (a plain-text and an HTML version).
+# Record the MIME types of both parts - text/plain and text/html.
+part1 = MIMEText(plain_text, 'plain')
+part2 = MIMEText(html_text, 'html')
 
-    for i in range(1, n+1):
-        factorial = factorial * i
+# Attach image if any
 
-    return factorial
+# Attach parts into message container.
+# According to RFC 2046, the last part of a multipart message, in this case
+# the HTML message, is best and preferred.
+msg.attach(part1)
+msg.attach(part2)
 
-def sum_factorial():
+# Send the message via local SMTP server.
+host = "smtp.gmail.com"
+port = 587
+mail = smtplib.SMTP(host, port, timeout=60)
+mail.ehlo()
+mail.starttls()
 
-    for i in range(50):
+# Add recepiens, cc or bcc if any
+recepient = [msg["To"]]
 
-        final_list.append(factorial(i))
+# username and password of gmail id which will be used to send email
+username = "praveenkmca2020@gmail.com"
+password = "uvsbpmumywgsvbza"
 
-    result = sum(final_list)
+# login using credentials
+mail.login(username, password)
 
-    print("Final SUM is {}".format(result))
-    
-    return result
+# send email
+mail.sendmail(msg["From"], recepient, msg.as_string())
+mail.quit()
 
-if __name__ == "__main__": 
-
-    sum_factorial()  
+print("\nSent\n")
