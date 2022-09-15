@@ -36,7 +36,7 @@ jobs:
       - name: Lint with pylint 
         run: |
           python sendmail.py
-          python lint.py
+          python lint.py > log.txt
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
