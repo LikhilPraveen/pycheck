@@ -9,7 +9,7 @@ import email.mime.application
 msg = MIMEMultipart('alternative')
 msg['Subject'] = "ERROR MESSAGE FROM Pylint"
 msg['From'] = "praveenkmca2020@gmail.com"
-msg['To'] = "chikkipapu@gmail.com"
+msg['To'] = "chikkipapu@gmail.com","shyammbalan@gmail.com"
 
 # create body
 html_text = '<div style="border:1px solid black">This is your message body in HTML format.</div>'
